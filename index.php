@@ -3,7 +3,6 @@
 include_once "protected/config.php";
 
 if(isset($_GET['pid']))
-
 {
 
 $path = parse_url($_GET['pid'], PHP_URL_PATH);
@@ -50,8 +49,10 @@ if($url_parse[0]=='campaigns-restaurant'){include_once "campaigns_restaurant_det
 
 if($url_parse[0]=='campaigns'){include_once "campaigns.php";}
 
-}else
-
+}elseif(isset($_GET['pid']) == 'api'){
+    die(11);
+}
+    else
 {
 
     include_once "home.php";
