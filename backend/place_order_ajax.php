@@ -156,7 +156,7 @@ if (isset($_POST['place_order'])) {
 
         }
 
-       
+       get_vendor_pkg($orderArray[$i]['vendor_id']);
 
         $data=array(
 
@@ -354,5 +354,45 @@ function sum_product_addon_price($product_addons)
 
     return $total_price;
 
+}
+
+function get_vendor_pkg($vendor_id){
+
+    // get vendor pkg that expire first
+    $get_vendor_pkgs = "SELECT MIN(expiry_date) as expiry_date,package_id,id,orders_quantity FROM `vendor_packages` WHERE vend_id=$vendor_id AND status='active'";
+
+    $vendor_pkgs = GetTableRow($get_vendor_pkgs);
+
+    $vendor_package_id = $vendor_pkgs['id'];
+
+    // get all orders against the pkg
+    $get_completed_orders = "SELECT id FROM `orders` WHERE vendor_package_id=$vendor_package_id AND vendor_id=$vendor_id";
+
+    $completed_orders = GetDataTable($get_completed_orders)->num_rows + 1;
+
+
+
+    if ($completed_orders == $vendor_pkgs['orders_quantity'])
+    {
+
+        UpdateRec('vendor_packages', " id=$vendor_package_id", ['status'=>'expire']);
+        $get_active_vendor_pkgs = "SELECT * FROM `vendor_packages` WHERE vend_id=$vendor_id AND status='active'";
+
+        $active_vendor_pkgs = GetDataTable($get_active_vendor_pkgs)->num_rows;
+
+        if ($active_vendor_pkgs == 0){
+            UpdateRec('vendor', " vendor_id=$vendor_id", ['status'=>0]);
+            print_r('user deactivated');
+        }
+    }
+
+
+    exit();
+
+    foreach ($completed_orders as $pkg) {
+        print_r($pkg);
+    }
+
+    exit();
 }
 

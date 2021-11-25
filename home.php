@@ -120,6 +120,7 @@ $LoginStatus = isset($_SESSION['LoginStatus'])?'LoggedIn':'NotLoggedIn';
 	<!--</div>-->
 
 	<!-- three column section -->
+
 	<div class="container py-5 mobile-none">
 		<div class="row">
 			<div class="col-md-4 gallery-lazyload-img">
