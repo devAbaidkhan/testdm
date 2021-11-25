@@ -284,15 +284,15 @@
 
     <!--</div>-->
 
+    
 
-
-
+    
 
 
 
     <div class="container">
 
-
+        
 
         <section>
 
@@ -311,11 +311,8 @@
           <div class="owl-carousel owl-theme" id="owl-small-1">
 
             <?php
-
             $cam_res= campaignsList();
-
             while($row=mysqli_fetch_array($cam_res)){
-
                 ?>
                     <div class="item">
 
@@ -331,21 +328,21 @@
                 <?php
             }
             ?>
-
+            
           </div>
 
+         
 
+          
 
-
-
-
+          
 
         </div>
 
       </div>
 
     </section>
-
+    
     <section>
         <div class="pt-4 pb-2 title d-flex align-items-center">
             <h5 class="m-0">Select from Category</h5>
@@ -373,7 +370,7 @@
                 <?php
             }
             ?>
-
+            
           </div>
 
         </div>
@@ -398,7 +395,7 @@
 
             <div class="row">
 
-            <?php
+            <?php 
 
             /* echo '<pre>';
 
@@ -501,7 +498,7 @@
 
                                 </h6>
 
-
+                                
 
                                 <p class="text-gray mb-1 small"> <?=$row['keywords']!='' ? ' '.$row['keywords'] : ''?></p>
 
@@ -536,7 +533,7 @@
 
 
 
-
+            
 
 
 
@@ -594,7 +591,7 @@ if (!isset($_SESSION['source']) || $_SESSION['source']!='mobile') {
 
     </script>
 
-
+    
 
     <script>
 
@@ -607,7 +604,7 @@ if (!isset($_SESSION['source']) || $_SESSION['source']!='mobile') {
                 margin: 10,
 
                 nav: false,
-
+                
                 loop: true,
 
                 responsive: {
@@ -643,7 +640,7 @@ if (!isset($_SESSION['source']) || $_SESSION['source']!='mobile') {
             })
 
           </script>
-
+            
             <script>
 
             $(document).ready(function() {
@@ -655,7 +652,7 @@ if (!isset($_SESSION['source']) || $_SESSION['source']!='mobile') {
                 margin: 10,
 
                 nav: false,
-
+                
                 loop: true,
 
                 responsive: {
@@ -691,7 +688,7 @@ if (!isset($_SESSION['source']) || $_SESSION['source']!='mobile') {
             })
 
           </script>
-
+          
 
           <script type="text/javascript">
 

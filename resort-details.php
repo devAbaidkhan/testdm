@@ -49,7 +49,77 @@ if (!isset($url_parse[1]) || empty($url_parse[1])) {
 .tabbable .nav-tabs .nav-link {
   white-space: nowrap;
 }
-	</style>
+
+
+#ans-template-wrap{
+	max-width: 767px;
+	position: relative;
+	margin: 0 auto;
+}
+
+.ans-nav-wrap{
+	position: fixed;
+	left: 0;
+	right: 0;
+	/*top: 0;*/
+	margin-top: 0px;
+	height: 60px;
+	width: 100%;
+	background: #4B5563;
+}
+
+#ans-onepage-nav{
+	padding: 0;
+	text-align: center;
+	display: flex;
+	overflow: auto;
+	margin-bottom: 0px;
+}
+
+
+
+#ans-onepage-nav li{
+	display: inline-block;
+	line-height: 41px;
+	white-space: nowrap;
+}
+
+#home{
+	padding-top: 0px;
+}
+
+
+#ans-onepage-nav li a {
+	color: #000;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+#ans-onepage-nav li a.scroll.ans-active{
+	font-weight: bold;
+	border-bottom: 3px solid rgb(75, 39, 105);
+	color: rgba(75, 39, 105,0.6);
+}
+
+.tabbable{
+    position: sticky;
+    top: 125px;
+    left: 0px;
+    right: 0px;
+    z-index: 99;
+}
+#nav-tab{
+    background: #fff !important;
+}
+.nav-link{
+    padding: 5px 10px 0px 10px !important;
+}
+.tabbable{
+    box-shadow: 2px 4px 8px 0px rgb(0 0 0 / 20%)
+}
+.tab-content{
+    padding-bottom: 200px;
+}</style>
 
 </head>
 
@@ -60,10 +130,6 @@ if (!isset($url_parse[1]) || empty($url_parse[1])) {
 
 
 	<?php include 'includes/header.php'; ?>
-
-
-
-
 
 
 
@@ -115,7 +181,7 @@ $keywords=explode(',', $data['keywords']);
 
 	<div class="container" style="position: sticky;
 
-        top: 58px;height:50px;background-color:white;z-index:1000;">
+        top: 80px;height:50px;background-color:white;z-index:99;">
 
 		<a href="#" class="d-flex justify-content-between d-inline-block pt-3 resort-name">
 
@@ -208,27 +274,32 @@ $keywords=explode(',', $data['keywords']);
 
 
 	<div class="container scrollhead padding0">
-        <div class="container sticky-top padding0 top_2">
+        <div class="container padding0 top_2">
 			<nav class="tabbable">
-            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-			<?php
-			$res=resturant_category($id);
-			$i=0;
-            while ($row=mysqli_fetch_array($res)) {
-                $active=$i==0?'active':'';
-                $exists=checkCategoryProductsExists($row['resturant_cat_id']);
-                if ($exists['total_products']>0) {
-                    ?>
-
-						<a class="nav-item nav-link <?=$active?>" id="nav-<?=slugify($row['cat_name'])?>-tab" data-toggle="tab" href="#nav-<?=slugify($row['cat_name'])?>" role="tab" aria-controls="nav-<?=slugify($row['cat_name'])?>" aria-selected="true"><?=$row['cat_name']?></a>
-				<?php
-            $i++;
-                }
-            }?>
-    </div>
+            <div class="nav nav-tab" id="nav-tab" role="tablist">
+                <ul id="ans-onepage-nav">
+        			<?php
+        			$res=resturant_category($id);
+        			$i=0;
+                    while ($row=mysqli_fetch_array($res)) {
+                        $active=$i==0?'active':'';
+                        $exists=checkCategoryProductsExists($row['resturant_cat_id']);
+                        if ($exists['total_products']>0) {
+                            ?>
+        
+        						
+        						    <li><a class="nav-item nav-link scroll" href="#nav-<?=slugify($row['cat_name'])?>-tab"><?=$row['cat_name']?></a></li>
+        						
+        						<!--<a class="nav-item nav-link <?=$active?>" id="nav-<?=slugify($row['cat_name'])?>-tab" data-toggle="tab" href="#nav-<?=slugify($row['cat_name'])?>" role="tab" aria-controls="nav-<?=slugify($row['cat_name'])?>" aria-selected="true"><?=$row['cat_name']?></a>-->
+        				<?php
+                    $i++;
+                        }
+                    }?>
+                </ul>
+            </div>
 			</nav>
 			<div class="container padding0 mt-3">
-		<section class="exclusive bg-white py-2 my-2">
+		<section class="exclusive bg-white">
 			<div class="tab-content p-10" id="nav-tabContent">
 			<?php
 			$res=resturant_category($id);
@@ -238,8 +309,9 @@ $keywords=explode(',', $data['keywords']);
 				$exists=checkCategoryProductsExists($row['resturant_cat_id']);
                 if ($exists['total_products']>0) {
                 ?>
-            <div class="tab-pane fade show <?=$active_and_show?>" id="nav-<?=slugify($row['cat_name'])?>" role="tabpanel" aria-labelledby="nav-<?=slugify($row['cat_name'])?>-tab">
-		
+            <!--<div class="tab-pane fade show <?=$active_and_show?>" id="nav-<?=slugify($row['cat_name'])?>" role="tabpanel" aria-labelledby="nav-<?=slugify($row['cat_name'])?>-tab">-->
+                <div id="nav-<?=slugify($row['cat_name'])?>-tab" class="ans-section">
+
 
 						<?php
 
@@ -843,7 +915,66 @@ if (!isset($_SESSION['source']) || $_SESSION['source']!='mobile') {
 		}
 
 	</script>
+<script>
+    (function( $ ) {
+	
+	$.fn.onePgaeNav = function( options ){
 
+		var settings = $.extend({
+			activeClass		: 'ans-active',
+			wrapper			: '', 		// Nav wrapper selector for scroll effect
+			speed 			: 200,		// animation speed
+			navStop 		: 180,		// stop before top
+			navStart 		: 300,		// change class before navstart pixel
+
+		}, options ),
+		$that = $(this);
+
+		$(this).on( 'click' , clickScroll );
+
+		if (settings.wrapper) {
+			$(window).on('scroll',function(){
+				var sectionTop 	= [],
+				windowTop 	= $(window).scrollTop();
+
+				$that.each(function(){
+					var hash = $(this).attr('href'),
+						hashOffset = $( hash ).offset();
+					if (typeof hashOffset !== 'undefined' ) {
+						sectionTop.push( hashOffset.top);
+					};
+				});
+
+				$.each( sectionTop, function(index){
+					if ( windowTop > sectionTop[index] - settings.navStart ){
+						$that.removeClass(settings.activeClass)
+							.eq(index).addClass(settings.activeClass);
+					}
+				});
+			});
+		};
+
+		function clickScroll(event){
+			event.preventDefault();
+
+			var hash 		= $(this).attr('href'),
+				hashOffset 	= $(hash).offset(),
+				hashTop 	= hashOffset.top;
+
+			$('html, body').animate({
+				scrollTop: hashTop - settings.navStop
+			}, settings.speed);
+		}
+
+	};
+
+}(jQuery));
+</script>
+<script type="text/javascript">
+		jQuery('.scroll').onePgaeNav({
+			wrapper : '#ans-onepage-nav'
+		});
+	</script>
 </body>
 
 

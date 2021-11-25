@@ -50,13 +50,13 @@ $LoginStatus = isset($_SESSION['LoginStatus'])?'LoggedIn':'NotLoggedIn';
 <body class="margin0" id="body">
 
 	<!-- include header -->
-	<?php include 'includes/header-index.php';  ?>
+	<?php include 'includes/header-index.php'; ?>
 
 
 
 
 
-    <!-- hero section  -->
+	<!-- hero section  -->
 	<div class="container-fluid vertical-align">
 		<div class="row">
 			<div class="col-12">

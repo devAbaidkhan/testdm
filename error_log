@@ -191,3 +191,5 @@ Stack trace:
 [18-Aug-2021 00:28:31 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, int given in /home2/dedo/public_html/testdm/order-history.php on line 141
 [18-Aug-2021 00:28:31 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, int given in /home2/dedo/public_html/testdm/order-history.php on line 217
 [18-Aug-2021 00:28:31 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, int given in /home2/dedo/public_html/testdm/order-history.php on line 297
+[24-Nov-2021 08:16:36 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, int given in /home2/dedo/public_html/testdm/resort-details.php on line 285
+[24-Nov-2021 08:16:36 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, int given in /home2/dedo/public_html/testdm/resort-details.php on line 308

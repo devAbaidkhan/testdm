@@ -1,4 +1,4 @@
-<?php
+<?php 
 $ipaddress = $_SERVER['REMOTE_ADDR'];
 echo $ipaddress;
 $ip=ip_info($ipaddress);
