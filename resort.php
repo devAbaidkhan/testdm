@@ -441,7 +441,7 @@
 
             ) vendor
 
-            WHERE distance <= 20 and vendor_category_id=2
+            WHERE distance <= 20 and vendor_category_id=2 and status=1
 
             LIMIT 15";
 
@@ -449,7 +449,7 @@
 
          {
 
-             $q="SELECT * FROM `vendor` WHERE vendor_category_id=2 LIMIT 15";
+             $q="SELECT * FROM `vendor` WHERE vendor_category_id=2 and status=1 LIMIT 15";
 
          }
 

@@ -156,7 +156,7 @@ if (isset($_POST['place_order'])) {
 
         }
 
-       get_vendor_pkg($orderArray[$i]['vendor_id']);
+      $pkg_id =  get_vendor_pkg($orderArray[$i]['vendor_id']);
 
         $data=array(
 
@@ -165,6 +165,7 @@ if (isset($_POST['place_order'])) {
                 'user_id'=>$orderArray[$i]['user_id'],
 
                 'vendor_id'=>$orderArray[$i]['vendor_id'],
+                'vendor_package_id'=>$pkg_id,
 
                 'address_id'=>$orderArray[$i]['address_id'],
 
@@ -363,36 +364,27 @@ function get_vendor_pkg($vendor_id){
 
     $vendor_pkgs = GetTableRow($get_vendor_pkgs);
 
+
     $vendor_package_id = $vendor_pkgs['id'];
 
     // get all orders against the pkg
     $get_completed_orders = "SELECT id FROM `orders` WHERE vendor_package_id=$vendor_package_id AND vendor_id=$vendor_id";
 
-    $completed_orders = GetDataTable($get_completed_orders)->num_rows + 1;
-
+    $completed_orders = GetDataTable($get_completed_orders)->num_rows+1;
 
 
     if ($completed_orders == $vendor_pkgs['orders_quantity'])
     {
 
-        UpdateRec('vendor_packages', " id=$vendor_package_id", ['status'=>'expire']);
+        UpdateRec('vendor_packages', "id=$vendor_package_id", ['status'=>'expire']);
         $get_active_vendor_pkgs = "SELECT * FROM `vendor_packages` WHERE vend_id=$vendor_id AND status='active'";
 
         $active_vendor_pkgs = GetDataTable($get_active_vendor_pkgs)->num_rows;
 
         if ($active_vendor_pkgs == 0){
             UpdateRec('vendor', " vendor_id=$vendor_id", ['status'=>0]);
-            print_r('user deactivated');
         }
     }
-
-
-    exit();
-
-    foreach ($completed_orders as $pkg) {
-        print_r($pkg);
-    }
-
-    exit();
+    return $vendor_pkgs['id'];
 }
 
