@@ -273,6 +273,10 @@
                                                     ?>
                                                     <i class="<?=$icon?>"></i>
                                                 </a>
+                                                <a href="dm/chat/<?=$row['vendor_id']?>"
+                                                   class="btn btn-outline-danger px-3 chat_btn"
+                                                   data-orderid="<?=$row['id']?>"
+                                                   data-vendorid="<?=$row['vendor_id']?>">Chat</a>
                                                 <a href="javascript:;"
                                                     class="btn btn-outline-danger px-3 cancel_order_btn"
                                                     data-orderid="<?=$row['id']?>"

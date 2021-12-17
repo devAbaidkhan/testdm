@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="07e1057b-1b4c-4802-ae35-8b30b80213e5" name="dm" url="http://dedodelivery.com">
+        <fileTransfer rootFolder="/public_html/testdm" host="dedodelivery.com" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

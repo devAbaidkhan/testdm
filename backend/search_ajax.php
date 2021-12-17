@@ -18,7 +18,7 @@ echo '</pre>'; */
     <div class="tab-pane fade show active" id="nav-restrurents" role="tabpanel" aria-labelledby="nav-restrurents-tab">
         <ul class="list-group">
             <?php
-            $restruarent_q="SELECT * FROM `vendor` WHERE vendor_name LIKE '%$search%' AND  ui_type=2";
+            $restruarent_q="SELECT * FROM `vendor` WHERE vendor_name LIKE '%$search%' AND  ui_type=2 AND status=1";
             $res=GetDataTable($restruarent_q);
             if ($res->num_rows>0) {
                 while ($row=mysqli_fetch_object($res)) {
@@ -40,7 +40,7 @@ echo '</pre>'; */
             ON vendor.vendor_id = resturant_product.vendor_id
             WHERE 
             vendor.ui_type=2
-            AND resturant_product.product_name LIKE '%$search%';";
+            AND resturant_product.product_name LIKE '%$search%' AND vendor.status=1;";
             $res=GetDataTable($prod_q);
             if ($res->num_rows>0) {
                 while ($row=mysqli_fetch_object($res)) {

@@ -413,7 +413,7 @@ function JoinedRestaurantCampaigns()
     FROM `campaign_vendor`
     INNER JOIN campaigns ON campaign_vendor.campaign_id=campaigns.id
     INNER JOIN vendor ON campaign_vendor.vendor_id=vendor.vendor_id
-    WHERE vendor.ui_type=2";
+    WHERE vendor.ui_type=2 AND vendor.status=1";
     return GetDataTable($q);
 }
 function campaign_restaurant_category($vendor_id)
@@ -439,7 +439,7 @@ function RestaurantCampaignDetail($vendor_id)
     FROM `campaign_vendor`
     INNER JOIN campaigns ON campaign_vendor.campaign_id=campaigns.id
     INNER JOIN vendor ON campaign_vendor.vendor_id=vendor.vendor_id
-    WHERE vendor.ui_type=2 AND campaign_vendor.vendor_id=$vendor_id";
+    WHERE vendor.ui_type=2 AND campaign_vendor.vendor_id=$vendor_id AND vendor.status=1";
     return GetDataTable($q);
 }
 function variant_detail($variant_id)

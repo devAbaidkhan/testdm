@@ -138,7 +138,7 @@ $campaign=$url_parse[1];
             $q="";
             $q="SELECT vendor.* FROM `campaign_vendor`
             INNER JOIN vendor ON campaign_vendor.vendor_id=vendor.vendor_id
-            WHERE campaign_vendor.campaign_id=$campaign";
+            WHERE campaign_vendor.campaign_id=$campaign AND vendor.status=1" ;
 
           $res=  GetDataTable($q);
 

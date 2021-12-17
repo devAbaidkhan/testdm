@@ -118,7 +118,7 @@ if (!isset($url_parse[1]) || empty($url_parse[1])) {
     box-shadow: 2px 4px 8px 0px rgb(0 0 0 / 20%)
 }
 .tab-content{
-    padding-bottom: 200px;
+    padding-bottom: 300px;
 }</style>
 
 </head>
@@ -141,7 +141,7 @@ if (!isset($url_parse[1]) || empty($url_parse[1])) {
 
 $slug=$url_parse[1];
 
-$q="SELECT * FROM `vendor` WHERE slug='$slug'";
+$q="SELECT * FROM `vendor` WHERE slug='$slug' AND status=1";
 
 $data=GetTableRow($q);
 
@@ -925,7 +925,7 @@ if (!isset($_SESSION['source']) || $_SESSION['source']!='mobile') {
 			wrapper			: '', 		// Nav wrapper selector for scroll effect
 			speed 			: 200,		// animation speed
 			navStop 		: 180,		// stop before top
-			navStart 		: 300,		// change class before navstart pixel
+			navStart 		: 230,		// change class before navstart pixel
 
 		}, options ),
 		$that = $(this);
